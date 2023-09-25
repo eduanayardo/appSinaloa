@@ -10,7 +10,7 @@ import {
     setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { bonfire, navigate, balloon,  } from 'ionicons/icons';
+import { bonfire, navigate, balloon, } from 'ionicons/icons';
 
 import Destinos from './pages/Destinos';
 import Eventos from './pages/Eventos';

@@ -1,11 +1,9 @@
-import { IonBackButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonLabel, IonList, IonNavLink, IonPage, IonRow, IonThumbnail, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonBackButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonNavLink, IonPage, IonRow, IonThumbnail, IonTitle, IonToggle, IonToolbar, ToggleCustomEvent } from '@ionic/react';
 import './Destinos.scss'
 import axios from 'axios';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import Municipio from './Municipio';
-import Eventos from './Eventos';
+import { moon } from 'ionicons/icons';
 
 const sendGetRequest = async () => {
     const getMunicipios = {
@@ -22,11 +20,40 @@ const sendGetRequest = async () => {
 
 const Destinos: React.FC = () => {
     const [municipios, setMunicipios] = React.useState([]);
+    const [themeToggle, setThemeToggle] = useState(false);
+    
     React.useEffect(() => {
         sendGetRequest().then(data => setMunicipios(data.municipios));
     }, []);
-    
-    
+
+    // Listen for the toggle check/uncheck to toggle the dark theme
+    const toggleChange = (ev: ToggleCustomEvent) => {
+        toggleDarkTheme(ev.detail.checked);
+    };
+
+    // Add or remove the "dark" class on the document body
+    const toggleDarkTheme = (shouldAdd: boolean) => {
+        document.body.classList.toggle('dark', shouldAdd);
+    };
+
+    // Check/uncheck the toggle and update the theme based on isDark
+    const initializeDarkTheme = (isDark: boolean) => {
+        setThemeToggle(isDark);
+        toggleDarkTheme(isDark);
+    };
+
+    useEffect(() => {
+        // Use matchMedia to check the user preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Initialize the dark theme based on the initial
+        // value of the prefers-color-scheme media query
+        initializeDarkTheme(prefersDark.matches);
+
+        // Listen for changes to the prefers-color-scheme media query
+        prefersDark.addEventListener('change', (mediaQuery) => initializeDarkTheme(mediaQuery.matches));
+    }, []);
+
     return (
         <IonPage id="municipios">
             <IonHeader className="ion-no-border">
@@ -37,6 +64,17 @@ const Destinos: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
+                <IonList className="ion-margin-top">
+                    <IonItem>
+                        {/* <IonIcon slot="start" icon={moon} /> */}
+                        <IonLabel>Modo oscuro</IonLabel>
+                        <IonToggle
+                            checked={themeToggle} onIonChange={toggleChange}
+                            slot="end"
+                            name="darkMode"
+                        />
+                    </IonItem>
+                </IonList>
                 <IonGrid>
                     <IonRow>
                         <IonCol size='12'>
@@ -48,11 +86,11 @@ const Destinos: React.FC = () => {
                             municipios.map((item, i) => {
                                 return (
                                     <IonCol className='municipio municipio-background' style={{ backgroundImage: `url(${item.imagen})` }} size="12">
-                                        <IonNavLink routerDirection="forward" component={() => <Municipio state={{id: item.id}} />}>
-                                        {/* <Link to={`/Municipio/${item.id}`}> */}
+                                        <IonNavLink routerDirection="forward" component={() => <Municipio state={{ id: item.id }} />}>
+                                            {/* <Link to={`/Municipio/${item.id}`}> */}
                                             <IonLabel className='nombre'>{item.nombre}</IonLabel> <br />
                                             <IonLabel className='zona'>{item.zona}</IonLabel>
-                                        {/* </Link> */}
+                                            {/* </Link> */}
                                         </IonNavLink>
                                     </IonCol>
                                 );

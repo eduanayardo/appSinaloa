@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { IonPage, IonHeader, IonToolbar, IonContent, IonBackButton, IonButtons, IonImg, IonIcon, IonText, ToggleCustomEvent, IonItem, IonList, IonToggle } from '@ionic/react'
+import { IonPage, IonHeader, IonToolbar, IonContent, IonBackButton, IonButtons, IonImg, IonIcon, IonText, ToggleCustomEvent, IonItem, IonList, IonToggle, IonLabel } from '@ionic/react'
 import { RouteComponentProps } from 'react-router';
 import axios from 'axios';
-import { earthOutline, peopleOutline, navigateCircleOutline } from 'ionicons/icons';
+import { earthOutline, peopleOutline, navigateCircleOutline, moon } from 'ionicons/icons';
 
 import "./Municipio.scss";
 
@@ -57,36 +57,7 @@ const Municipio: React.FC<Municipio> = (props) => {
         });
     }, []);
 
-    const [themeToggle, setThemeToggle] = useState(false);
-
-    // Listen for the toggle check/uncheck to toggle the dark theme
-    const toggleChange = (ev: ToggleCustomEvent) => {
-        toggleDarkTheme(ev.detail.checked);
-    };
-
-    // Add or remove the "dark" class on the document body
-    const toggleDarkTheme = (shouldAdd: boolean) => {
-        document.body.classList.toggle('dark', shouldAdd);
-    };
-
-    // Check/uncheck the toggle and update the theme based on isDark
-    const initializeDarkTheme = (isDark: boolean) => {
-        setThemeToggle(isDark);
-        toggleDarkTheme(isDark);
-    };
-
-    useEffect(() => {
-        // Use matchMedia to check the user preference
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-        // Initialize the dark theme based on the initial
-        // value of the prefers-color-scheme media query
-        initializeDarkTheme(prefersDark.matches);
-
-        // Listen for changes to the prefers-color-scheme media query
-        prefersDark.addEventListener('change', (mediaQuery) => initializeDarkTheme(mediaQuery.matches));
-    }, []);
-
+    
     return (
         <IonPage id="municipio">
             <IonContent fullscreen={true}>
@@ -109,13 +80,7 @@ const Municipio: React.FC<Municipio> = (props) => {
                     <br />
                     <h3>{municipio.titulo}</h3>
                 </div>
-                {/* <IonList inset={true}>
-                    <IonItem>
-                        <IonToggle checked={themeToggle} onIonChange={toggleChange} justify="space-between">
-                            Dark Mode
-                        </IonToggle>
-                    </IonItem>
-                </IonList> */}
+                
                 <div className="ion-padding municipio-detalle">
                     <p><IonIcon icon={navigateCircleOutline}></IonIcon> Superficie: {municipio.superficie} km<sup>2</sup> </p>
                     <p><IonIcon icon={peopleOutline}></IonIcon> Población: {municipio.poblacion} habitantes</p>
