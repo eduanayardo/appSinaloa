@@ -29,7 +29,7 @@ function openExternalUrl(url: string) {
 const sendGetRequest = async (id: string) => {
     const getMunicipio = {
         method: 'GET',
-        url: 'http://192.168.100.65/api/items/read',
+        url: 'http://localhost/api_rest/items/read',
         params: { peticion: 'municipio', id: id }
     };
 

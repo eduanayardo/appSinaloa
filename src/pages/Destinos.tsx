@@ -8,7 +8,7 @@ import { moon } from 'ionicons/icons';
 const sendGetRequest = async () => {
     const getMunicipios = {
         method: 'GET',
-        url: 'http://192.168.100.65/api/items/read',
+        url: 'http://localhost/api_rest/items/read',
         params: { peticion: 'municipios' }
     };
 
