@@ -1,3 +1,49 @@
+# Cómo Clonar un Repositorio de GitHub
+
+[GitHub](https://github.com/) es una plataforma ampliamente utilizada para el almacenamiento y colaboración de proyectos de desarrollo de software. Clonar un repositorio de GitHub te permite obtener una copia local del código fuente de un proyecto para que puedas trabajar en él en tu propio entorno. A continuación, se describen los pasos para clonar un repositorio de GitHub:
+
+## Paso 1: Iniciar Sesión en GitHub
+
+Si aún no tienes una cuenta de GitHub, debes registrarte en [GitHub](https://github.com/join) para poder clonar repositorios y colaborar en proyectos.
+
+## Paso 2: Encuentra el Repositorio
+
+1. Inicia sesión en tu cuenta de GitHub.
+2. Utiliza la barra de búsqueda en la parte superior de la página para buscar el el usuario `eduanayardo`.
+![proyecto](/public/assets/images/github_0.png) <br>
+![proyecto](/public/assets/images/github_1.png) <br>
+3. Haz clic en la opción `Users` en el menú izquierdo.
+![proyecto](/public/assets/images/github_2.png) <br>
+4. Dar clic en el nombre del usuario.
+![proyecto](/public/assets/images/github_3.png) <br>
+5. Seleccionar la opción de `Repositories`.
+![proyecto](/public/assets/images/github_4.png) <br>
+6. Seleccionar el repositorio a clonar.
+![proyecto](/public/assets/images/github_5.png) <br>
+
+## Paso 3: Copiar la URL del Repositorio
+
+En la página principal del repositorio, encontrarás el botón "Code" (Código) en la esquina superior derecha. Haz clic en el botón.
+![proyecto](/public/assets/images/github_6.png) <br>
+Y, a continuación, selecciona la URL del repositorio. Puedes copiar esta URL al hacer clic en el icono de copiar que se encuentra junto a ella.
+![proyecto](/public/assets/images/github_7.png) <br>
+
+## Paso 4: Abre la Terminal o Línea de Comandos
+
+Abre la terminal o línea de comandos en tu sistema operativo. Asegúrate de estar ubicado en el directorio donde deseas clonar el repositorio.
+![proyecto](/public/assets/images/github_8.png) <br>
+![proyecto](/public/assets/images/github_9.png) <br>
+
+## Paso 5: Clonar el Repositorio
+
+Utiliza el siguiente comando para clonar el repositorio en tu máquina local:
+
+```bash
+git clone https://github.com/eduanayardo/appSinaloa.git
+```
+![proyecto](/public/assets/images/github_10.png) <br>
+
+
 # Instalar Dependencias
 
 ## Paso 1: Instalar Node.js y npm
